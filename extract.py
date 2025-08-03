@@ -48,8 +48,11 @@ def extract_prescription_fields(file_bytes):
 
     # ADD and VA
     fields['add']      = grab(r"ADD\s*:\s*([+\-\d\.]+\s*D)")
-    fields['va_od_sc'] = grab(r"Va\s*\(sc\)\s*OD\s*:\s*([\d\/\+\-]+)", flags=re.IGNORECASE)
-    fields['va_os_sc'] = grab(r"Va\s*\(sc\)[\s\S]*?OS\s*:\s*([\d\/\+\-]+)", flags=re.IGNORECASE)
+    # Visual Acuity — Sc (Va (sc) OD & OS)
+    od_sc = re.search(r"Va\s*\(sc\s*\)\s*OD:\s*([\d\/\+\-]+)", full, re.IGNORECASE)
+    os_sc = re.search(r"Va\s*\(sc\s*\)[\s\S]*?OS:\s*([\d\/\+\-]+)", full, re.IGNORECASE)
+    fields['va_od_sc'] = od_sc.group(1) if od_sc else ""
+    fields['va_os_sc'] = os_sc.group(1) if os_sc else ""
 
     return fields
 
