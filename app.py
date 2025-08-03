@@ -16,7 +16,7 @@ st.markdown(
     label, .stMarkdown, .css-17eq0hr {
         font-weight: bold !important;
         color: black !important;
-        font-size: 16px !important;
+        font-size: 19px !important;
     }
     </style>
     """,
@@ -39,29 +39,10 @@ st.markdown(
 st.title("Prescription pdf to Card")
 
 # Upload the prescription PDF
-#presc_file = st.file_uploader("Upload documentation.pdf", type=["pdf"])
+presc_file = st.file_uploader("Upload prescription here: ", type=["pdf"])
 
 # Choose the doctor template
-#tmpl_choice = st.selectbox("Select template:", ["Dr Thuraya", "Dr Taqwa"])
-with st.container():
-    st.markdown(
-        """
-        <div style="background-color: rgba(0,0,0,0.6); padding: 15px; border-radius: 10px;">
-        <h4 style='color: white;'>Upload Prescription PDF</h4>
-        """,
-        unsafe_allow_html=True
-    )
-    presc_file = st.file_uploader("", type=["pdf"])
-    
-    st.markdown(
-        """
-        <h4 style='color: white;'>Select Doctor Template</h4>
-        """,
-        unsafe_allow_html=True
-    )
-    tmpl_choice = st.selectbox("", ["Dr Thuraya", "Dr Taqwa"])
-
-    st.markdown("</div>", unsafe_allow_html=True)
+tmpl_choice = st.selectbox("Select examiner card template:", ["Dr Thuraya", "Dr Taqwa"])
 
 if presc_file:
     # Read uploaded file bytes
