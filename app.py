@@ -8,7 +8,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fae.linkedin.com%2Fposts%2Fal-salamahospital-sa_%25D9%2585%25D8%25B3%25D8%25AA%25D8%25B4%25D9%2581%25D9%2589%25D8%25A7%25D9%2584%25D8%25B3%25D9%2584%25D8%25A7%25D9%2585%25D8%25A9-%25D8%25AC%25D8%25AF%25D8%25A9-alsalamahospital-activity-7153723265981571073-DHI6&psig=AOvVaw36YqfEGQ9kLwMQWzYlhr_L&ust=1754319387576000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCJiOi5jz7o4DFQAAAAAdAAAAABAK");
+        background-image: url("https://alsalamahospital.com/wp-content/uploads/2024/04/DSC_5555-1-1-1-1.jpg");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
