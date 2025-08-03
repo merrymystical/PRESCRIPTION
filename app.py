@@ -1,26 +1,27 @@
 import streamlit as st
+from io import BytesIO
 from extract import extract_prescription_fields, generate_filled_card
 
-st.title("Prescription → Filled Card")
+st.set_page_config(page_title="Prescription → Card", layout="centered")
+st.title("📇 Prescription → Filled Card")
 
-# 1. Upload prescription PDF
-presc_file = st.file_uploader("Upload documentation.pdf", type="pdf")
-# 2. Choose template
-tmpl_choice = st.selectbox("Template", ["DrThuraya", "DrTaqwa"])
+presc_file = st.file_uploader("Upload documentation.pdf", type=["pdf"])
+tmpl_choice = st.selectbox("Select template:", ["DrThuraya", "DrTaqwa"])
+
 if presc_file:
-    bytes_presc = presc_file.read()
-    fields = extract_prescription_fields(bytes_presc)
-    st.write("Extracted fields:", fields)
+    file_bytes = presc_file.read()
+    fields = extract_prescription_fields(file_bytes)
+    st.subheader("Extracted Fields")
+    st.json(fields)
 
-    if st.button("Generate Card"):
-        # load chosen template
+    if st.button("Generate Filled Card"):
         tmpl_path = f"templates/{tmpl_choice}_Template.pdf"
         with open(tmpl_path, "rb") as f:
             tmpl_bytes = f.read()
-        filled_bytes = generate_filled_card(tmpl_bytes, fields)
+        filled_pdf = generate_filled_card(tmpl_bytes, fields)
         st.download_button(
-            "Download Filled Card",
-            data=filled_bytes,
+            "Download Filled Card PDF",
+            data=filled_pdf,
             file_name="filled_card.pdf",
             mime="application/pdf"
         )
