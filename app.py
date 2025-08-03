@@ -7,6 +7,22 @@ st.set_page_config(page_title="Prescription → Card", layout="centered")
 st.markdown(
     """
     <style>
+    /* Make title text black */
+    .stApp h1 {
+        color: black !important;
+    }
+
+    /* Make file uploader and selectbox labels black */
+    label, .stMarkdown, .css-17eq0hr {
+        color: black !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+st.markdown(
+    """
+    <style>
     .stApp {
         background-image: url("https://alsalamahospital.com/wp-content/uploads/2024/04/DSC_5555-1-1-1-1.jpg");
         background-size: cover;
