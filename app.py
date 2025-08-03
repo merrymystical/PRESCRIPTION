@@ -26,7 +26,7 @@ st.markdown(
     """
     <style>
     .stApp {
-# background-image: url("https://alsalamahospital.com/wp-content/uploads/2024/04/DSC_5555-1-1-1-1.jpg");
+        # background-image: url("https://alsalamahospital.com/wp-content/uploads/2024/04/DSC_5555-1-1-1-1.jpg");
         background-image: url("https://media.licdn.com/dms/image/v2/D4D22AQHdEsYAb7Lkhw/feedshare-shrink_800/feedshare-shrink_800/0/1705580533339?e=1756944000&v=beta&t=zuX1L2vYlddscLLBr4FSzSOp2n4ZW877Oh-grS0uSRc");
         background-size: cover;
         background-position: center;
@@ -39,10 +39,29 @@ st.markdown(
 st.title("Prescription pdf to Card")
 
 # Upload the prescription PDF
-presc_file = st.file_uploader("Upload documentation.pdf", type=["pdf"])
+#presc_file = st.file_uploader("Upload documentation.pdf", type=["pdf"])
 
 # Choose the doctor template
-tmpl_choice = st.selectbox("Select template:", ["Dr Thuraya", "Dr Taqwa"])
+#tmpl_choice = st.selectbox("Select template:", ["Dr Thuraya", "Dr Taqwa"])
+with st.container():
+    st.markdown(
+        """
+        <div style="background-color: rgba(0,0,0,0.6); padding: 15px; border-radius: 10px;">
+        <h4 style='color: white;'>Upload Prescription PDF</h4>
+        """,
+        unsafe_allow_html=True
+    )
+    presc_file = st.file_uploader("", type=["pdf"])
+    
+    st.markdown(
+        """
+        <h4 style='color: white;'>Select Doctor Template</h4>
+        """,
+        unsafe_allow_html=True
+    )
+    tmpl_choice = st.selectbox("", ["Dr Thuraya", "Dr Taqwa"])
+
+    st.markdown("</div>", unsafe_allow_html=True)
 
 if presc_file:
     # Read uploaded file bytes
