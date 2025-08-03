@@ -14,7 +14,7 @@ if presc_file:
 
     if st.button("Generate Card"):
         # load chosen template
-        tmpl_path = f"{tmpl_choice}_Template.pdf"
+        tmpl_path = f"templates/{tmpl_choice}_Template.pdf"
         with open(tmpl_path, "rb") as f:
             tmpl_bytes = f.read()
         filled_bytes = generate_filled_card(tmpl_bytes, fields)
