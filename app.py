@@ -7,16 +7,16 @@ st.set_page_config(page_title="Prescription → Card", layout="centered")
 st.markdown(
     """
     <style>
-    /* Make title text black */
+    /* Title */
     .stApp h1 {
         color: black !important;
     }
 
-    /* Make file uploader and selectbox labels black */
+    /* File uploader and selectbox labels */
     label, .stMarkdown, .css-17eq0hr {
-        font-family: 'Helvetica-Bold', sans-serif;
+        font-weight: bold !important;
         color: black !important;
-        font-size: 16px;
+        font-size: 16px !important;
     }
     </style>
     """,
@@ -35,7 +35,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.title("📇 Prescription → Filled Card")
+st.title("Prescription pdf to Card")
 
 # Upload the prescription PDF
 presc_file = st.file_uploader("Upload documentation.pdf", type=["pdf"])
