@@ -14,7 +14,9 @@ st.markdown(
 
     /* Make file uploader and selectbox labels black */
     label, .stMarkdown, .css-17eq0hr {
+        font-family: 'Helvetica-Bold', sans-serif;
         color: black !important;
+        font-size: 16px;
     }
     </style>
     """,
@@ -39,7 +41,7 @@ st.title("📇 Prescription → Filled Card")
 presc_file = st.file_uploader("Upload documentation.pdf", type=["pdf"])
 
 # Choose the doctor template
-tmpl_choice = st.selectbox("Select template:", ["DrThuraya", "DrTaqwa"])
+tmpl_choice = st.selectbox("Select template:", ["Dr Thuraya", "Dr Taqwa"])
 
 if presc_file:
     # Read uploaded file bytes
