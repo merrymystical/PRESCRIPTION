@@ -26,7 +26,8 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url("https://alsalamahospital.com/wp-content/uploads/2024/04/DSC_5555-1-1-1-1.jpg");
+# background-image: url("https://alsalamahospital.com/wp-content/uploads/2024/04/DSC_5555-1-1-1-1.jpg");
+        background-image: url("https://media.licdn.com/dms/image/v2/D4D22AQHdEsYAb7Lkhw/feedshare-shrink_800/feedshare-shrink_800/0/1705580533339?e=1756944000&v=beta&t=zuX1L2vYlddscLLBr4FSzSOp2n4ZW877Oh-grS0uSRc");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
