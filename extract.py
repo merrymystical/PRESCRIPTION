@@ -57,7 +57,7 @@ def extract_prescription_fields(file_bytes):
     return fields
 
 
-def generate_filled_card(template_bytes, fields):
+def generate_filled_card(template_bytes, fields, doctor_name):
     """
     Overlay prescription fields onto the two-page template PDF (as bytes), returning the merged PDF bytes.
     """
@@ -83,11 +83,18 @@ def generate_filled_card(template_bytes, fields):
     c.drawString(45, 75, fields.get('os_sphere', ''))
     c.drawString(77, 75, fields.get('os_cylinder', ''))
     c.drawString(115, 75, fields.get('os_axis', ''))
-    c.drawString(132, 85, fields.get('va_od_sc', ''))
-    c.drawString(132, 75, fields.get('va_os_sc', ''))
+    #c.drawString(132, 85, fields.get('va_od_sc', ''))
+    #c.drawString(132, 75, fields.get('va_os_sc', ''))
     c.drawString(153, 85, fields.get('add', ''))
     c.drawString(153, 75, fields.get('add', ''))
     c.drawString(177, 18, fields.get('Print Date', ''))
+    # Add VA fields only for Dr Thuraya
+    if doctor_name == "Dr Thuraya":
+        c.drawString(132, 85, fields.get('va_od_sc', ''))
+        c.drawString(132, 75, fields.get('va_os_sc', ''))
+    else:
+        c.drawString(132, 85, "")
+        c.drawString(132, 75, "")
     c.save()
     overlay_buf.seek(0)
 
