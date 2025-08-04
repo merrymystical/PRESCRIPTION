@@ -27,7 +27,6 @@ st.markdown(
     """
     <style>
     .stApp {
-        #background-image: url("https://alsalamahospital.com/wp-content/uploads/2024/04/DSC_5555-1-1-1-1.jpg");
         background-image: url("https://media.licdn.com/dms/image/v2/D4D22AQHdEsYAb7Lkhw/feedshare-shrink_800/feedshare-shrink_800/0/1705580533339?e=1756944000&v=beta&t=zuX1L2vYlddscLLBr4FSzSOp2n4ZW877Oh-grS0uSRc");
         background-size: cover;
         background-position: up;
@@ -37,6 +36,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 st.title("PRESCRIPTION PDF TO CARD")
 
 # Upload the prescription PDF
@@ -58,16 +58,15 @@ if presc_file:
 
     # Generate card on button click
     if st.button("Generate Filled Card"):
-        # Read the selected template PDF
-        #tmpl_path = f"templates/{tmpl_choice}_Template.pdf"
         # Map label names to actual filenames
-    template_map = {
-        "Dr Thuraya": "DrThuraya_Template.pdf",
-        "Dr Taqwa": "DrTaqwa_Template.pdf"
-    }
-    tmpl_filename = template_map.get(tmpl_choice)
-    tmpl_path = f"templates/{tmpl_filename}"
+        template_map = {
+            "Dr Thuraya": "DrThuraya_Template.pdf",
+            "Dr Taqwa": "DrTaqwa_Template.pdf"
+        }
+        tmpl_filename = template_map.get(tmpl_choice)
+        tmpl_path = f"templates/{tmpl_filename}"
 
+        # Read the selected template PDF
         with open(tmpl_path, "rb") as f:
             tmpl_bytes = f.read()
 
