@@ -8,8 +8,8 @@ st.markdown(
     """
     <style>
     /* Title */
-    .stApp h2 {
-        color: black !important;
+    .stApp h1 {
+        color: #1b263b !important;
     }
 
     /* File uploader and selectbox labels */
@@ -22,30 +22,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
-st.markdown("""
-    <style>
-    /* 🔷 File uploader background */
-    .stFileUploader > div {
-        background-color: #e0f0ff !important;
-        border-radius: 8px;
-        padding: 5px;
-    }
-
-    /* 🔷 Selectbox background */
-    .stSelectbox > div {
-        background-color: #e0f0ff !important;
-        border-radius: 8px;
-        padding: 5px;
-    }
-
-    /* Optional: change font color inside them */
-    .stFileUploader, .stSelectbox {
-        color: #002244 !important;
-        font-weight: bold;
-    }
-    </style>
-""", unsafe_allow_html=True)
 
 st.markdown(
     """
