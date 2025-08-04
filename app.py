@@ -59,7 +59,15 @@ if presc_file:
     # Generate card on button click
     if st.button("Generate Filled Card"):
         # Read the selected template PDF
-        tmpl_path = f"templates/{tmpl_choice}_Template.pdf"
+        #tmpl_path = f"templates/{tmpl_choice}_Template.pdf"
+        # Map label names to actual filenames
+    template_map = {
+        "Dr Thuraya": "DrThuraya_Template.pdf",
+        "Dr Taqwa": "DrTaqwa_Template.pdf"
+    }
+    tmpl_filename = template_map.get(tmpl_choice)
+    tmpl_path = f"templates/{tmpl_filename}"
+
         with open(tmpl_path, "rb") as f:
             tmpl_bytes = f.read()
 
