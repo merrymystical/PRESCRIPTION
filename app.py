@@ -28,9 +28,9 @@ st.markdown(
     <style>
     .stApp {
         background-image: url("https://media.licdn.com/dms/image/v2/D4D22AQHdEsYAb7Lkhw/feedshare-shrink_800/feedshare-shrink_800/0/1705580533339?e=1756944000&v=beta&t=zuX1L2vYlddscLLBr4FSzSOp2n4ZW877Oh-grS0uSRc");
-        background-size: contain;
+        background-size: cover;
         background-repeat: no-repeat;
-        background-position: top center;
+        background-position: bottom left;
         background-attachment: fixed;
     }
     </style>
