@@ -53,8 +53,8 @@ if presc_file:
     fields = extract_prescription_fields(file_bytes)
 
     # Show extracted fields for verification
-    st.subheader("Extracted Fields")
-    st.json(fields)
+    #st.subheader("Extracted Fields")
+    #st.json(fields)
 
     # Generate card on button click
     if st.button("Generate Filled Card"):
