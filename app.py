@@ -36,10 +36,10 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.title("Prescription pdf to Card")
+st.title("PRESCRIPTION PDF TO CARD")
 
 # Upload the prescription PDF
-presc_file = st.file_uploader("Upload prescription here: ", type=["pdf"])
+presc_file = st.file_uploader("#### Upload prescription here: ", type=["pdf"])
 
 # Choose the doctor template
 tmpl_choice = st.selectbox("Select examiner card template:", ["Dr Thuraya", "Dr Taqwa"])
