@@ -8,7 +8,7 @@ st.markdown(
     """
     <style>
     /* Title */
-    .stApp h1 {
+    .stApp h2 {
         color: black !important;
     }
 
@@ -42,16 +42,7 @@ st.title("PRESCRIPTION PDF TO CARD")
 presc_file = st.file_uploader("#### Upload prescription here: ", type=["pdf"])
 
 # Choose the doctor template
-tmpl_choice = st.selectbox("Select examiner card template:", ["Dr Thuraya", "Dr Taqwa"])
-
-# Styled heading for uploader
-#st.markdown("### Upload Prescription Here")
-#presc_file = st.file_uploader("", type=["pdf"])
-
-# Styled heading for template selector
-#st.markdown("### Select Examiner Card Template")
-#tmpl_choice = st.selectbox("", ["Dr Thuraya", "Dr Taqwa"])
-
+tmpl_choice = st.selectbox("#### Select examiner card template: ", ["Dr Thuraya", "Dr Taqwa"])
 
 if presc_file:
     # Read uploaded file bytes
