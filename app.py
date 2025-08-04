@@ -71,7 +71,7 @@ if presc_file:
             tmpl_bytes = f.read()
 
         # Generate the filled PDF
-        filled_pdf = generate_filled_card(tmpl_bytes, fields)
+        filled_pdf = generate_filled_card(tmpl_bytes, fields, tmpl_choice)
 
         # Create a safe filename using patient name and MRN
         safe_name = fields.get("patient_name", "Patient").replace(" ", "_").replace("/", "-")
