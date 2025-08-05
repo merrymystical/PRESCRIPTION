@@ -11,7 +11,7 @@ def set_background(image_file):
     .stApp {{
         background-image: url("data:image/jpg;base64,{encoded}");
         background-size: cover;
-        background-position: center;
+        background-position: bottom;
         background-attachment: fixed;
     }}
     </style>
@@ -34,7 +34,7 @@ st.markdown(
     label, .stMarkdown, .css-17eq0hr {
         #font-weight: bold !important;
         #color: #1b263b !important;
-        color: white !important;
+        color: black !important;
         font-size: 28px !important;
     }
     </style>
