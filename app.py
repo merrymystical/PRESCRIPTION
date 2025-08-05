@@ -9,7 +9,8 @@ st.markdown(
     <style>
     /* Title */
     .stApp h1 {
-        color: #1b263b !important;
+        #color: #1b263b !important;
+        color: white !important;
     }
 
     /* File uploader and selectbox labels */
