@@ -18,7 +18,7 @@ st.markdown(
         font-weight: bold !important;
         #color: #1b263b !important;
         color: white !important;
-        font-size: 21px !important;
+        font-size: 28px !important;
     }
     </style>
     """,
