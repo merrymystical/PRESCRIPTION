@@ -105,12 +105,12 @@ st.markdown(
     <style>
     .logo-container {{
         position: fixed;
-        top: 15px;
+        top: 25px;
         right: 20px;
         z-index: 100;
     }}
     .logo-container img {{
-        width: 100px;
+        width: 200px;
         height: auto;
     }}
     </style>
