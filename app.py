@@ -21,14 +21,14 @@ def set_background(image_file):
 st.markdown(
     """
     <style>
-    /* Force Streamlit container alignment to the left */
+    /* Shift the centered block to the left */
     .main .block-container {
-        margin-left: 1rem;
-        padding-left: 1rem;
-        max-width: none;
+        margin-left: 2rem !important;   /* Adjust this value as needed */
+        margin-right: auto !important;
+        max-width: 600px;               /* Keep the container narrow */
     }
 
-    /* Optional: Adjust title and input spacing */
+    /* Align the title to the left */
     .stApp h1 {
         text-align: left;
     }
@@ -38,7 +38,7 @@ st.markdown(
 )
 
 # App configuration
-st.set_page_config(page_title="Prescription → Card", layout="wide")
+st.set_page_config(page_title="Prescription → Card", layout="centered")
 set_background("bg2.jpg")
 st.markdown(
     """
