@@ -126,8 +126,8 @@ st.markdown(
     <style>
     .contact-info {
         position: fixed;
-        bottom: 15px;
-        left: 15px;
+        bottom: 20px;
+        left: 25px;
         color: #1b263b;
         font-size: 14px;
         line-height: 1.6;
