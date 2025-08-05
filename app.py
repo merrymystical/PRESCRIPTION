@@ -128,7 +128,7 @@ st.markdown(
         position: fixed;
         bottom: 20px;
         left: 25px;
-        color: #1b263b;
+        color: white;
         font-size: 14px;
         line-height: 1.6;
         font-family: Helvetica, sans-serif;
