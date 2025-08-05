@@ -3,6 +3,10 @@ from io import BytesIO
 from extract import extract_prescription_fields, generate_filled_card
 import base64
 
+def load_logo_base64(path):
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
+
 def set_background(image_file):
     with open(image_file, "rb") as f:
         encoded = base64.b64encode(f.read()).decode()
@@ -94,29 +98,29 @@ if presc_file:
             mime="application/pdf"
         )
         # Add floating logo and contact info
+logo_base64 = load_logo_base64("logo.png")
+
 st.markdown(
-    """
+    f"""
     <style>
-    /* Bottom-right logo */
-    .logo-container {
+    .logo-container {{
         position: fixed;
         bottom: 15px;
         right: 20px;
         z-index: 100;
-    }
-
+    }}
     .logo-container img {{
         width: 100px;
         height: auto;
     }}
     </style>
-
     <div class="logo-container">
-        <img src="logo.png" alt="Logo">
+        <img src="data:image/png;base64,{logo_base64}" alt="Logo">
     </div>
     """,
     unsafe_allow_html=True
 )
+
 st.markdown(
     """
     <style>
