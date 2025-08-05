@@ -128,13 +128,14 @@ st.markdown(
         font-size: 14px;
         line-height: 1.6;
         font-family: Arial, sans-serif;
+        font-weight: normal;
         z-index: 100;
     }
     </style>
 
     <div class="contact-info">
         📞 920051919<br>
-         @ Alsalamahosp<br>
+         @  Alsalamahosp<br>
         🌐 alsalamahospital.com
     </div>
     """,
