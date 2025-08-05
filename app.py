@@ -20,7 +20,7 @@ def set_background(image_file):
     
 # App configuration
 st.set_page_config(page_title="Prescription → Card", layout="centered")
-set_background("bg2.jpg")
+set_background("bg1.jpg")
 st.markdown(
     """
     <style>
