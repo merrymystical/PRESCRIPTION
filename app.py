@@ -28,6 +28,7 @@ st.markdown(
     .stApp h1 {
         color: #1b263b !important;
         #color: white !important;
+        font-position: center;
     }
 
     /* File uploader and selectbox labels */
