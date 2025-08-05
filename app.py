@@ -129,9 +129,9 @@ st.markdown(
         bottom: 15px;
         left: 15px;
         color: #1b263b;
-        font-size: 24px;
+        font-size: 14px;
         line-height: 1.6;
-        font-family: Arial, sans-serif;
+        font-family: Helvetica, sans-serif;
         font-weight: normal;
         z-index: 100;
     }
