@@ -18,36 +18,6 @@ def set_background(image_file):
     """
     st.markdown(css, unsafe_allow_html=True)
 
-st.markdown(
-    """
-    <style>
-    /* Force the main block to align fully left */
-    .main .block-container {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-        padding-left: 1rem !important;   /* Less space from left */
-        padding-right: 1rem;
-        max-width: 600px;                /* Keep block narrow */
-        margin-left: 0 !important;       /* Fully left-align */
-    }
-
-    /* Align the title and other text to the left */
-    .stApp h1 {
-        text-align: left;
-    }
-
-    /* Style label fonts */
-    label, .stMarkdown, .css-17eq0hr {
-        font-weight: bold !important;
-        color: black !important;
-        font-size: 28px !important;
-        text-align: left !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # App configuration
 st.set_page_config(page_title="Prescription → Card", layout="centered")
 set_background("bg2.jpg")
@@ -59,6 +29,7 @@ st.markdown(
         color: #1b263b !important;
         #color: white !important;
         font-position: center;
+        text-align: left;
     }
 
     /* File uploader and selectbox labels */
@@ -67,6 +38,7 @@ st.markdown(
         #color: #1b263b !important;
         color: black !important;
         font-size: 28px !important;
+        text-align: left !important;
     }
     </style>
     """,
