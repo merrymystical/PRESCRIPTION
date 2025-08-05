@@ -146,7 +146,7 @@ st.markdown(
 
     <div class="contact-info">
         📞 <a href="tel:920051919">920051919</a><br>
-         @  <a href="mailto:info@alsalamahospital.com">info@alsalamahospital.com</a><br>
+        📧 <a href="mailto:info@alsalamahospital.com">info@alsalamahospital.com</a><br>
         🌐 <a href="https://www.alsalamahospital.com" target="_blank">alsalamahospital.com</a>
     </div>
     """,
