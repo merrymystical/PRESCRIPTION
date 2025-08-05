@@ -21,16 +21,27 @@ def set_background(image_file):
 st.markdown(
     """
     <style>
-    /* Shift the centered block to the left */
+    /* Force the main block to align fully left */
     .main .block-container {
-        margin-left: 2rem !important;   /* Adjust this value as needed */
-        margin-right: auto !important;
-        max-width: 600px;               /* Keep the container narrow */
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        padding-left: 1rem !important;   /* Less space from left */
+        padding-right: 1rem;
+        max-width: 600px;                /* Keep block narrow */
+        margin-left: 0 !important;       /* Fully left-align */
     }
 
-    /* Align the title to the left */
+    /* Align the title and other text to the left */
     .stApp h1 {
         text-align: left;
+    }
+
+    /* Style label fonts */
+    label, .stMarkdown, .css-17eq0hr {
+        font-weight: bold !important;
+        color: black !important;
+        font-size: 28px !important;
+        text-align: left !important;
     }
     </style>
     """,
