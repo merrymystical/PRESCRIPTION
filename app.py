@@ -120,22 +120,15 @@ st.markdown(
 st.markdown(
     """
     <style>
-    /* Bottom-left contact info with icons */
     .contact-info {
         position: fixed;
         bottom: 15px;
         left: 20px;
         color: white;
-        background-color: rgba(0, 0, 0, 0.5);
-        padding: 10px 15px;
-        border-radius: 8px;
         font-size: 14px;
         line-height: 1.6;
         font-family: Arial, sans-serif;
         z-index: 100;
-    }
-    .contact-info i {
-        margin-right: 8px;
     }
     </style>
 
