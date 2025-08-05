@@ -109,28 +109,40 @@ st.markdown(
         height: 60px;  /* Adjust logo size here */
         opacity: 0.8;
     }
-
-    /* Bottom-left contact info */
-    .contact-info {
-        position: fixed;
-        bottom: 15px;
-        left: 20px;
-        color: white;
-        background-color: rgba(0,0,0,0.5);
-        padding: 8px 12px;
-        border-radius: 6px;
-        font-size: 14px;
-        z-index: 100;
-    }
     </style>
 
     <div class="logo-container">
         <img src="logo.png" alt="Logo">
     </div>
+    """,
+    unsafe_allow_html=True
+)
+st.markdown(
+    """
+    <style>
+    /* Bottom-left contact info with icons */
+    .contact-info {
+        position: fixed;
+        bottom: 15px;
+        left: 20px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-size: 14px;
+        line-height: 1.6;
+        font-family: Arial, sans-serif;
+        z-index: 100;
+    }
+    .contact-info i {
+        margin-right: 8px;
+    }
+    </style>
 
     <div class="contact-info">
-        Al Salama Hospital<br>
-        Email: info@alsalama.com
+        📞 920051919<br>
+        🧾 Alsalamahosp<br>
+        🌐 alsalamahospital.com
     </div>
     """,
     unsafe_allow_html=True
