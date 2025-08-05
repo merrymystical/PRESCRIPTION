@@ -32,7 +32,7 @@ st.markdown(
 
     /* File uploader and selectbox labels */
     label, .stMarkdown, .css-17eq0hr {
-        #font-weight: bold !important;
+        font-weight: bold !important;
         #color: #1b263b !important;
         color: black !important;
         font-size: 28px !important;
