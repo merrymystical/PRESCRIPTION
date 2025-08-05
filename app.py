@@ -11,7 +11,7 @@ def set_background(image_file):
     .stApp {{
         background-image: url("data:image/jpg;base64,{encoded}");
         background-size: cover;
-        background-position: top;
+        background-position: center;
         background-attachment: fixed;
     }}
     </style>
@@ -36,21 +36,6 @@ st.markdown(
         #color: #1b263b !important;
         color: white !important;
         font-size: 28px !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    """
-    <style>
-    .stApp {
-        background-image: url("https://media.licdn.com/dms/image/v2/D4D22AQHdEsYAb7Lkhw/feedshare-shrink_800/feedshare-shrink_800/0/1705580533339?e=1756944000&v=beta&t=zuX1L2vYlddscLLBr4FSzSOp2n4ZW877Oh-grS0uSRc");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: top;
-        background-attachment: fixed;
     }
     </style>
     """,
