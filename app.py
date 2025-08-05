@@ -134,7 +134,7 @@ st.markdown(
 
     <div class="contact-info">
         📞 920051919<br>
-        🧾 Alsalamahosp<br>
+         @ Alsalamahosp<br>
         🌐 alsalamahospital.com
     </div>
     """,
