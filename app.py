@@ -33,7 +33,7 @@ st.markdown(
         color: #1b263b !important;
         #color: white !important;
         font-position: center;
-        text-align: left;
+        text-align: center;
     }
 
     /* File uploader and selectbox labels */
