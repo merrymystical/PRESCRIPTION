@@ -105,10 +105,10 @@ st.markdown(
         z-index: 100;
     }
 
-    .logo-container img {
-        height: 60px;  /* Adjust logo size here */
-        opacity: 0.8;
-    }
+    .logo-container img {{
+        width: 100px;
+        height: auto;
+    }}
     </style>
 
     <div class="logo-container">
