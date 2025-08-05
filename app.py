@@ -9,13 +9,13 @@ st.markdown(
     <style>
     /* Title */
     .stApp h1 {
-        #color: #1b263b !important;
-        color: white !important;
+        color: #1b263b !important;
+        #color: white !important;
     }
 
     /* File uploader and selectbox labels */
     label, .stMarkdown, .css-17eq0hr {
-        font-weight: bold !important;
+        #font-weight: bold !important;
         #color: #1b263b !important;
         color: white !important;
         font-size: 28px !important;
