@@ -93,3 +93,45 @@ if presc_file:
             file_name=file_name,
             mime="application/pdf"
         )
+        # Add floating logo and contact info
+st.markdown(
+    """
+    <style>
+    /* Bottom-right logo */
+    .logo-container {
+        position: fixed;
+        bottom: 15px;
+        right: 20px;
+        z-index: 100;
+    }
+
+    .logo-container img {
+        height: 60px;  /* Adjust logo size here */
+        opacity: 0.8;
+    }
+
+    /* Bottom-left contact info */
+    .contact-info {
+        position: fixed;
+        bottom: 15px;
+        left: 20px;
+        color: white;
+        background-color: rgba(0,0,0,0.5);
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        z-index: 100;
+    }
+    </style>
+
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo">
+    </div>
+
+    <div class="contact-info">
+        Al Salama Hospital<br>
+        Email: info@alsalama.com
+    </div>
+    """,
+    unsafe_allow_html=True
+)
