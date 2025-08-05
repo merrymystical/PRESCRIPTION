@@ -127,9 +127,9 @@ st.markdown(
     .contact-info {
         position: fixed;
         bottom: 15px;
-        left: 20px;
-        color: white;
-        font-size: 14px;
+        left: 15px;
+        color: #1b263b;
+        font-size: 24px;
         line-height: 1.6;
         font-family: Arial, sans-serif;
         font-weight: normal;
