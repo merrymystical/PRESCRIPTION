@@ -135,12 +135,19 @@ st.markdown(
         font-weight: normal;
         z-index: 100;
     }
+    .contact-info a {
+        color: white;
+        text-decoration: none;
+    }
+    .contact-info a:hover {
+        text-decoration: underline;
+    }
     </style>
 
     <div class="contact-info">
-        📞 920051919<br>
-          @  Alsalamahosp<br>
-        🌐 alsalamahospital.com
+        📞 <a href="tel:920051919">920051919</a><br>
+         @  <a href="mailto:info@alsalamahospital.com">info@alsalamahospital.com</a><br>
+        🌐 <a href="https://www.alsalamahospital.com" target="_blank">alsalamahospital.com</a>
     </div>
     """,
     unsafe_allow_html=True
