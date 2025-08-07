@@ -21,7 +21,7 @@ if not st.session_state.authenticated:
         if VALID_USERS.get(user) == pw:
             st.session_state.authenticated = True
             st.session_state.user = user
-            st.experimental_rerun()
+            #st.experimental_rerun()
         else:
             st.error("❌ Invalid username or password")
     st.stop()
@@ -89,7 +89,7 @@ presc_file = st.file_uploader("## Upload prescription here: ", type=["pdf"])
 #choosing template
 tmpl_choice = st.selectbox("## Select your card template:", tmpl_list)
 
-if presc_file:
+if presc_file and tmpl_choice:
     file_bytes = presc_file.read()
     fields = extract_prescription_fields(file_bytes)
 
