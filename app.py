@@ -3,6 +3,32 @@ from io import BytesIO
 from extract import extract_prescription_fields, generate_filled_card
 import base64
 
+#log-in page section
+VALID_USERS = {
+    "thuraya": "hunter2",
+    "taqwa":   "letmein123",
+    "maria": "m123"
+}
+
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+
+if not st.session_state.authenticated:
+    st.title("🔒 Doctor Login")
+    user = st.text_input("Username")
+    pw   = st.text_input("Password", type="password")
+    if st.button("Login"):
+        if VALID_USERS.get(user) == pw:
+            st.session_state.authenticated = True
+            st.session_state.user = user
+            st.experimental_rerun()
+        else:
+            st.error("❌ Invalid username or password")
+    st.stop()
+
+#main ftn section
+st.sidebar.success(f"Logged in as: **{st.session_state.user}**")
+
 def load_logo_base64(path):
     with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
@@ -22,7 +48,7 @@ def set_background(image_file):
     """
     st.markdown(css, unsafe_allow_html=True)
 
-# App configuration
+#app config.
 st.set_page_config(page_title="Prescription → Card", layout="centered")
 set_background("bg2.jpg")
 st.markdown(
@@ -51,53 +77,53 @@ st.markdown(
 
 st.title("PRESCRIPTION PDF TO CARD")
 
-# Upload the prescription PDF
-presc_file = st.file_uploader("## Upload prescription here: ", type=["pdf"])
+# Per-user template options
+TEMPLATES = {
+    "thuraya": ["DrThuraya"],
+    "taqwa":   ["DrTaqwa"],
+    "maria": ["DrTaqwa"]
+}
+tmpl_list = TEMPLATES.get(st.session_state.user, [])
 
-# Choose the doctor template
-tmpl_choice = st.selectbox("## Select examiner card template: ", ["Dr Thuraya", "Dr Taqwa"])
+presc_file = st.file_uploader("## Upload prescription here: ", type=["pdf"])
+#choosing template
+tmpl_choice = st.selectbox("## Select your card template:", tmpl_list)
 
 if presc_file:
-    # Read uploaded file bytes
     file_bytes = presc_file.read()
-
-    # Extract fields from PDF
     fields = extract_prescription_fields(file_bytes)
 
     # Show extracted fields for verification
     #st.subheader("Extracted Fields")
     #st.json(fields)
 
-    # Generate card on button click
     if st.button("Generate Filled Card"):
-        # Map label names to actual filenames
-        template_map = {
-            "Dr Thuraya": "DrThuraya_Template.pdf",
-            "Dr Taqwa": "DrTaqwa_Template.pdf"
+        #mapping label names to actual filenames
+        tmpl_map = {
+            "DrThuraya": "DrThuraya_Template.pdf",
+            "DrTaqwa":   "DrTaqwa_Template.pdf"
         }
-        tmpl_filename = template_map.get(tmpl_choice)
-        tmpl_path = f"templates/{tmpl_filename}"
+        path = f"templates/{tmpl_map[tmpl_choice]}"
+        #tmpl_filename = template_map.get(tmpl_choice)
+        #tmpl_path = f"templates/{tmpl_filename}"
 
-        # Read the selected template PDF
-        with open(tmpl_path, "rb") as f:
+        with open(path, "rb") as f:
             tmpl_bytes = f.read()
 
-        # Generate the filled PDF
         filled_pdf = generate_filled_card(tmpl_bytes, fields, tmpl_choice)
 
-        # Create a safe filename using patient name and MRN
+        #saving filename using patient name and MRN
         safe_name = fields.get("patient_name", "Patient").replace(" ", "_").replace("/", "-")
         file_no = fields.get("MRN", "Unknown")
         file_name = f"{safe_name}_{file_no}_card.pdf"
 
-        # Provide download button
         st.download_button(
             label="Download Filled Card PDF",
             data=filled_pdf,
             file_name=file_name,
             mime="application/pdf"
         )
-        # Add floating logo and contact info
+
 logo_base64 = load_logo_base64("logo.png")
 
 st.markdown(
