@@ -5,8 +5,8 @@ import base64
 
 #log-in page section
 VALID_USERS = {
-    "thuraya": "hunter2",
-    "taqwa":   "letmein123",
+    "thuraya.mohammed": "tmm96",
+    "taqwa.taha":   "tth48",
     "maria": "m123"
 }
 
@@ -79,8 +79,8 @@ st.title("PRESCRIPTION PDF TO CARD")
 
 # Per-user template options
 TEMPLATES = {
-    "thuraya": ["DrThuraya"],
-    "taqwa":   ["DrTaqwa"],
+    "thuraya.mohammed": ["Dr Thuraya"],
+    "taqwa.taha":   ["Dr Taqwa"],
     "maria": ["DrTaqwa"]
 }
 tmpl_list = TEMPLATES.get(st.session_state.user, [])
@@ -100,8 +100,8 @@ if presc_file and tmpl_choice:
     if st.button("Generate Filled Card"):
         #mapping label names to actual filenames
         tmpl_map = {
-            "DrThuraya": "DrThuraya_Template.pdf",
-            "DrTaqwa":   "DrTaqwa_Template.pdf"
+            "Dr Thuraya": "DrThuraya_Template.pdf",
+            "Dr Taqwa":   "DrTaqwa_Template.pdf"
         }
         path = f"templates/{tmpl_map[tmpl_choice]}"
         #tmpl_filename = template_map.get(tmpl_choice)
