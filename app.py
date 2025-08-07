@@ -100,7 +100,7 @@ if not st.session_state.authenticated:
         if VALID_USERS.get(user) == pw:
             st.session_state.authenticated = True
             st.session_state.user = user
-            st.experimental_rerun()
+            #st.experimental_rerun()
         else:
             st.error("❌ Invalid username or password")
     st.stop()
