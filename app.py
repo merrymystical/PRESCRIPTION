@@ -123,49 +123,49 @@ if not st.session_state.authenticated:
             st.error("❌ Invalid username or password")
 
 # On login page, under the Login button:
-st.markdown("---")
-if st.button("Forgot Password?"):
+    st.markdown("---")
+    if st.button("Forgot Password?"):
     # Ensure they entered a username
-    if not user or user not in VALID_USERS:
-        st.warning("Enter a valid username first")
-    else:
-        # Generate OTP
-        import random
-        otp = f"{random.randint(0,999999):06d}"
-        st.session_state.password_reset_otp  = otp
-        st.session_state.password_reset_user = user
-
-        # Send email
-        emails = RECOVERY_EMAILS[user]
-        message = f"Subject: Your OTP\n\nYour password reset code is: {otp}"
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as smtp:
-            smtp.ehlo()
-            smtp.starttls()
-            smtp.login(SMTP_USER, SMTP_PASS)
-            for addr in emails:
-                smtp.sendmail(FROM_EMAIL, addr, message)
-
-        st.info("An OTP has been sent to your recovery email(s).")
-# If they’ve requested a reset, show OTP & new-password fields:
-if st.session_state.password_reset_otp:
-    st.subheader("🔑 Reset Password")
-    entered_otp = st.text_input("Enter the 6-digit OTP sent to your email")
-    new_pw1     = st.text_input("New password", type="password")
-    new_pw2     = st.text_input("Confirm new password", type="password")
-    if st.button("Confirm Reset"):
-        if entered_otp != st.session_state.password_reset_otp:
-            st.error("❌ Incorrect OTP")
-        elif not new_pw1 or new_pw1 != new_pw2:
-            st.error("❌ Passwords do not match")
+        if not user or user not in VALID_USERS:
+            st.warning("Enter a valid username first")
         else:
-            # Update password
-            user = st.session_state.password_reset_user
-            VALID_USERS[user] = new_pw1
-            st.success("✅ Password updated. Please log in with your new password.")
-            # Clear reset session
-            st.session_state.password_reset_otp = None
-            st.session_state.password_reset_user = None
-st.stop()
+            # Generate OTP
+            import random
+            otp = f"{random.randint(0,999999):06d}"
+            st.session_state.password_reset_otp  = otp
+            st.session_state.password_reset_user = user
+    
+            # Send email
+            emails = RECOVERY_EMAILS[user]
+            message = f"Subject: Your OTP\n\nYour password reset code is: {otp}"
+            with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as smtp:
+                smtp.ehlo()
+                smtp.starttls()
+                smtp.login(SMTP_USER, SMTP_PASS)
+                for addr in emails:
+                    smtp.sendmail(FROM_EMAIL, addr, message)
+
+            st.info("An OTP has been sent to your recovery email(s).")
+# If they’ve requested a reset, show OTP & new-password fields:
+    if st.session_state.password_reset_otp:
+        st.subheader("🔑 Reset Password")
+        entered_otp = st.text_input("Enter the 6-digit OTP sent to your email")
+        new_pw1     = st.text_input("New password", type="password")
+        new_pw2     = st.text_input("Confirm new password", type="password")
+        if st.button("Confirm Reset"):
+            if entered_otp != st.session_state.password_reset_otp:
+                st.error("❌ Incorrect OTP")
+            elif not new_pw1 or new_pw1 != new_pw2:
+                st.error("❌ Passwords do not match")
+            else:
+                # Update password
+                user = st.session_state.password_reset_user
+                VALID_USERS[user] = new_pw1
+                st.success("✅ Password updated. Please log in with your new password.")
+                # Clear reset session
+                st.session_state.password_reset_otp = None
+                st.session_state.password_reset_user = None
+    st.stop()
 
 # ——————————————————————————————
 # 3) Main App (post-login)
