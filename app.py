@@ -139,6 +139,7 @@ if st.button("Forgot Password?"):
         emails = RECOVERY_EMAILS[user]
         message = f"Subject: Your OTP\n\nYour password reset code is: {otp}"
         with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as smtp:
+            smtp.ehlo()
             smtp.starttls()
             smtp.login(SMTP_USER, SMTP_PASS)
             for addr in emails:
