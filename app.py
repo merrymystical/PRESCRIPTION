@@ -4,6 +4,14 @@ from extract import extract_prescription_fields, generate_filled_card
 import base64
 import smtplib
 
+# On first load, seed session_state with our hard-coded passwords
+if "user_passwords" not in st.session_state:
+    st.session_state.user_passwords = {
+        "thuraya.mohammed": "tmm96",
+        "taqwa.taha":       "tth48",
+        "maria":            "m123"
+    }
+
 SMTP_HOST = st.secrets["SMTP_HOST"]
 SMTP_PORT = int(st.secrets["SMTP_PORT"])
 SMTP_USER = st.secrets["SMTP_USER"]
@@ -111,16 +119,16 @@ if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
 
 if not st.session_state.authenticated:
-    st.title("🔒 Doctor Login")
+    st.title("Doctor Login")
     user = st.text_input("Username")
     pw   = st.text_input("Password", type="password")
     if st.button("Login"):
-        if VALID_USERS.get(user) == pw:
+        if st.session_state.user_passwords.get(user) == pw:
             st.session_state.authenticated = True
             st.session_state.user = user
             #st.experimental_rerun()
         else:
-            st.error("❌ Invalid username or password")
+            st.error("Invalid username or password")
 
 # On login page, under the Login button:
     st.markdown("---")
@@ -148,20 +156,20 @@ if not st.session_state.authenticated:
             st.info("An OTP has been sent to your recovery email(s).")
 # If they’ve requested a reset, show OTP & new-password fields:
     if st.session_state.password_reset_otp:
-        st.subheader("🔑 Reset Password")
+        st.subheader("Reset Password")
         entered_otp = st.text_input("Enter the 6-digit OTP sent to your email")
         new_pw1     = st.text_input("New password", type="password")
         new_pw2     = st.text_input("Confirm new password", type="password")
         if st.button("Confirm Reset"):
             if entered_otp != st.session_state.password_reset_otp:
-                st.error("❌ Incorrect OTP")
+                st.error("Incorrect OTP")
             elif not new_pw1 or new_pw1 != new_pw2:
-                st.error("❌ Passwords do not match")
+                st.error("Passwords do not match")
             else:
                 # Update password
                 user = st.session_state.password_reset_user
-                VALID_USERS[user] = new_pw1
-                st.success("✅ Password updated. Please log in with your new password.")
+                st.session_state.user_passwords[user] = new_pw1
+                st.success("Password updated. Please log in with your new password.")
                 # Clear reset session
                 st.session_state.password_reset_otp = None
                 st.session_state.password_reset_user = None
@@ -172,7 +180,7 @@ if not st.session_state.authenticated:
 # ——————————————————————————————
 st.sidebar.success(f"Logged in as: **{st.session_state.user}**")
 
-st.title("📇 PRESCRIPTION PDF TO CARD")
+st.title("PRESCRIPTION PDF TO CARD")
 
 TEMPLATES = {
     "thuraya.mohammed": ["Dr Thuraya"],
@@ -197,4 +205,4 @@ if presc_file and tmpl_choice:
         safe = fields.get("patient_name","Patient").replace(" ","_")
         mrn  = fields.get("MRN","Unknown")
         fname= f"{safe}_{mrn}_card.pdf"
-        st.download_button("📥 Download Filled Card PDF", filled, file_name=fname, mime="application/pdf")
+        st.download_button("Download Filled Card PDF", filled, file_name=fname, mime="application/pdf")
