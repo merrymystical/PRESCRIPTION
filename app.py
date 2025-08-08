@@ -48,18 +48,18 @@ def inject_logo_and_contact():
         <style>
         .logo-container {{
             position: fixed;
-            top: 20px;
+            top: 25px;
             right: 20px;
             z-index: 100;
         }}
         .logo-container img {{
-            width: 120px;
+            width: 200px;
             height: auto;
         }}
         .contact-info {{
             position: fixed;
-            bottom: 15px;
-            left: 20px;
+            bottom: 20px;
+            left: 25px;
             color: white;
             font-size: 14px;
             line-height: 1.6;
@@ -134,7 +134,7 @@ if not st.session_state.authenticated:
     st.markdown("---")
     if st.button("Forgot Password?"):
     # Ensure they entered a username
-        if not user or user not in VALID_USERS:
+        if not user or user not in st.session_state.user_passwords:
             st.warning("Enter a valid username first")
         else:
             # Generate OTP
@@ -153,14 +153,14 @@ if not st.session_state.authenticated:
                 for addr in emails:
                     smtp.sendmail(FROM_EMAIL, addr, message)
 
-            st.info("An OTP has been sent to your recovery email(s).")
+            st.info("An OTP has been sent to your recovery email")
 # If they’ve requested a reset, show OTP & new-password fields:
     if st.session_state.password_reset_otp:
         st.subheader("Reset Password")
         entered_otp = st.text_input("Enter the 6-digit OTP sent to your email")
         new_pw1     = st.text_input("New password", type="password")
         new_pw2     = st.text_input("Confirm new password", type="password")
-        if st.button("Confirm Reset"):
+        if st.button("Reset"):
             if entered_otp != st.session_state.password_reset_otp:
                 st.error("Incorrect OTP")
             elif not new_pw1 or new_pw1 != new_pw2:
