@@ -147,13 +147,39 @@ if not st.session_state.authenticated:
     
             # Send email
             emails = users[user]["recovery"]
-            message = f"Subject: Your OTP\n\nYour password reset code is: {otp}"
+            subject = "Password Reset - Al Salama Hospital"
+            message_html = f"""\
+            From: {FROM_EMAIL}
+            To: {', '.join(emails)}
+            Subject: {subject}
+            MIME-Version: 1.0
+            Content-Type: text/html
+            <html>
+              <body style="font-family: Arial, sans-serif; color: #333;">
+                <div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd;">
+                  <div style="text-align: center;">
+                    <img src="https://www.alsalamahospital.com/logo.png" alt="Hospital Logo" style="max-width: 150px; margin-bottom: 20px;">
+                  </div>
+                  <h2 style="color: #1b263b;">🔑 Password Reset Request</h2>
+                  <p>Dear Doctor,</p>
+                  <p>We have received a request to reset your password. Please use the OTP code below:</p>
+                  <p style="font-size: 22px; font-weight: bold; color: #1b263b;">{otp}</p>
+                  <p>If you did not request a password reset, you can safely ignore this email.</p>
+                  <hr style="margin: 20px 0;">
+                  <p style="font-size: 14px; color: #555;">
+                    📞 <a href="tel:920051919" style="color: #1b263b; text-decoration: none;">920051919</a><br>
+                    📧 <a href="mailto:info@alsalamahospital.com" style="color: #1b263b; text-decoration: none;">info@alsalamahospital.com</a><br>
+                    🌐 <a href="https://www.alsalamahospital.com" style="color: #1b263b; text-decoration: none;">alsalamahospital.com</a>
+                  </p>
+                </div>
+              </body>
+            </html>
+            """
             with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as smtp:
-                smtp.ehlo()
                 smtp.starttls()
                 smtp.login(SMTP_USER, SMTP_PASS)
                 for addr in emails:
-                    smtp.sendmail(FROM_EMAIL, addr, message)
+                    smtp.sendmail(FROM_EMAIL, addr, message_html.encode("utf-8"))
 
             st.info("An OTP has been sent to your recovery email")
 # If they’ve requested a reset, show OTP & new-password fields:
