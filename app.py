@@ -3,6 +3,20 @@ from io import BytesIO
 from extract import extract_prescription_fields, generate_filled_card
 import base64
 import smtplib
+import os
+import json
+
+USERS_FILE = "users.json"
+
+def load_users():
+    if os.path.exists(USERS_FILE):
+        with open(USERS_FILE, "r") as f:
+            return json.load(f)
+    return {}
+
+def save_users(users_dict):
+    with open(USERS_FILE, "w") as f:
+        json.dump(users_dict, f, indent=2)
 
 # On first load, seed session_state with our hard-coded passwords
 if "user_passwords" not in st.session_state:
@@ -98,19 +112,7 @@ inject_logo_and_contact()
 # ——————————————————————————————
 # 2) Authentication (Phase 1)
 # ——————————————————————————————
-
-VALID_USERS = {
-    "thuraya.mohammed": "tmm96",
-    "taqwa.taha":       "tth48",
-    "maria":            "m123"
-}
-#recovery emails per user
-RECOVERY_EMAILS = {
-    "thuraya.mohammed": ["thuraya.mohammed@alsalamahospital.com"],
-    "taqwa.taha":       ["taqwa.taha@alsalamahospital.com"],
-    "maria":            ["sammz2003@gmail.com"]
-}
-
+users = load_users()
 if "password_reset_otp" not in st.session_state:
     st.session_state.password_reset_otp = None
 if "password_reset_user" not in st.session_state:
@@ -123,7 +125,7 @@ if not st.session_state.authenticated:
     user = st.text_input("Username")
     pw   = st.text_input("Password", type="password")
     if st.button("Login"):
-        if st.session_state.user_passwords.get(user) == pw:
+        if users.get(user, {}).get("password") == pw:
             st.session_state.authenticated = True
             st.session_state.user = user
             #st.experimental_rerun()
@@ -134,7 +136,7 @@ if not st.session_state.authenticated:
     st.markdown("---")
     if st.button("Forgot Password?"):
     # Ensure they entered a username
-        if not user or user not in st.session_state.user_passwords:
+        if user not in users:
             st.warning("Enter a valid username first")
         else:
             # Generate OTP
@@ -144,7 +146,7 @@ if not st.session_state.authenticated:
             st.session_state.password_reset_user = user
     
             # Send email
-            emails = RECOVERY_EMAILS[user]
+            emails = users[user]["recovery"]
             message = f"Subject: Your OTP\n\nYour password reset code is: {otp}"
             with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as smtp:
                 smtp.ehlo()
@@ -168,7 +170,8 @@ if not st.session_state.authenticated:
             else:
                 # Update password
                 user = st.session_state.password_reset_user
-                st.session_state.user_passwords[user] = new_pw1
+                users[user]["password"] = new_pw1
+                save_users(users)
                 st.success("Password updated. Please log in with your new password.")
                 # Clear reset session
                 st.session_state.password_reset_otp = None
