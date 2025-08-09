@@ -1,0 +1,14 @@
+{
+  "thuraya.mohammed": {
+    "password": "tmm96",
+    "recovery": ["thuraya.mohammed@alsalamahospital.com"]
+  },
+  "taqwa.taha": {
+    "password": "tth48",
+    "recovery": ["taqwa.taha@alsalamahospital.com"]
+  },
+  "maria": {
+    "password": "m123",
+    "recovery": ["sammz2003@gmail.com"]
+  }
+}
