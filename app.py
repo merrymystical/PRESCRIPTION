@@ -163,7 +163,7 @@ if not st.session_state.authenticated:
             920051919
             info@alsalamahospital.com
             """
-            message = f"From: {FROM_EMAIL}\nTo: {addr}\nSubject: {subject}\n\n{body}"
+            #message = f"From: {FROM_EMAIL}\nTo: {addr}\nSubject: {subject}\n\n{body}"
             smtp.sendmail(FROM_EMAIL, addr, message.encode("utf-8"))
             st.info("An OTP has been sent to your recovery email")
 # If they’ve requested a reset, show OTP & new-password fields:
