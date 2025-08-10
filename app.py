@@ -147,21 +147,34 @@ if not st.session_state.authenticated:
     
             # Send email
             emails = users[user]["recovery"]
-            subject = "Al Salama Hospital - OTP"
+            subject = "Password Reset-Al Salama Hospital - OTP"
             message = f"""\
             From: {FROM_EMAIL}
             To: {', '.join(emails)}
             Subject: {subject}
             MIME-Version: 1.0
-            Content-Type: text/plain
+            Content-Type: text/html
             
-            Your OTP is: {otp}
-            
-            If you did not request a password reset, please contact Al Salama Hospital IT Support.
-            
-            Contact:
-            920051919
-            info@alsalamahospital.com
+            <html>
+              <body style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px;">
+                <div style="max-width: 500px; margin: auto; background-color: white; border-radius: 8px; padding: 20px; border: 1px solid #ddd;">
+                  <div style="text-align: center;">
+                    <img src="https://via.placeholder.com/200x60?text=Al+Salama+Hospital" alt="Al Salama Hospital" style="max-width: 200px; margin-bottom: 20px;">
+                  </div>
+                  <h2 style="color: #003366; text-align: center;">Password Reset Request</h2>
+                  <p style="font-size: 16px;">Dear Doctor,</p>
+                  <p style="font-size: 16px;">Your One-Time Password (OTP) is:</p>
+                  <div style="text-align: center; font-size: 22px; font-weight: bold; background-color: #003366; color: white; padding: 10px; border-radius: 4px;">
+                    {otp}
+                  </div>
+                  <p style="font-size: 14px; color: #666;">This OTP will expire in 10 minutes. If you did not request a password reset, please contact IT support immediately.</p>
+                  <hr>
+                  <p style="font-size: 14px; color: #666; text-align: center;">
+                    📞 920051919 | 📧 info@alsalamahospital.com | 🌐 <a href="https://www.alsalamahospital.com" style="color: #003366;">alsalamahospital.com</a>
+                  </p>
+                </div>
+              </body>
+            </html>
             """
             #message = f"From: {FROM_EMAIL}\nTo: {addr}\nSubject: {subject}\n\n{body}"
             with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as smtp:
