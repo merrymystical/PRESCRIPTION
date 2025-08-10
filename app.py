@@ -154,7 +154,6 @@ if not st.session_state.authenticated:
             Subject: {subject}
             MIME-Version: 1.0
             Content-Type: text/html
-            
             <html>
               <body style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px;">
                 <div style="max-width: 500px; margin: auto; background-color: white; border-radius: 8px; padding: 20px; border: 1px solid #ddd;">
