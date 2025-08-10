@@ -134,26 +134,23 @@ if not st.session_state.authenticated:
 
 # On login page, under the Login button:
     st.markdown("---")
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.text import MIMEText
+
     if st.button("Forgot Password?"):
-    # Ensure they entered a username
         if user not in users:
             st.warning("Enter a valid username first")
         else:
-            # Generate OTP
             import random
             otp = f"{random.randint(0,999999):06d}"
-            st.session_state.password_reset_otp  = otp
+            st.session_state.password_reset_otp = otp
             st.session_state.password_reset_user = user
     
-            # Send email
             emails = users[user]["recovery"]
-            subject = "Password Reset-Al Salama Hospital - OTP"
-            message = f"""\
-            From: {FROM_EMAIL}
-            To: {', '.join(emails)}
-            Subject: {subject}
-            MIME-Version: 1.0
-            Content-Type: text/html
+            subject = "Password Reset - Al Salama Hospital"
+    
+            # HTML Email body
+            html_content = f"""
             <html>
               <body style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px;">
                 <div style="max-width: 500px; margin: auto; background-color: white; border-radius: 8px; padding: 20px; border: 1px solid #ddd;">
@@ -175,13 +172,22 @@ if not st.session_state.authenticated:
               </body>
             </html>
             """
-            #message = f"From: {FROM_EMAIL}\nTo: {addr}\nSubject: {subject}\n\n{body}"
-            with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as smtp:
-                smtp.starttls()
-                smtp.login(SMTP_USER, SMTP_PASS)
-                for addr in emails:
-                    smtp.sendmail(FROM_EMAIL, addr, message.encode("utf-8"))
-            st.info("An OTP has been sent to your recovery email")
+    
+            # Build MIME email
+            for addr in emails:
+                msg = MIMEMultipart("alternative")
+                msg["From"] = FROM_EMAIL
+                msg["To"] = addr
+                msg["Subject"] = subject
+                msg.attach(MIMEText(html_content, "html"))
+    
+                with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as smtp:
+                    smtp.starttls()
+                    smtp.login(SMTP_USER, SMTP_PASS)
+                    smtp.sendmail(FROM_EMAIL, addr, msg.as_string())
+    
+            st.info("An OTP has been sent to your recovery email(s).")
+
 # If they’ve requested a reset, show OTP & new-password fields:
     if st.session_state.password_reset_otp:
         st.subheader("Reset Password")
