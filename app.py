@@ -155,7 +155,7 @@ if not st.session_state.authenticated:
               <body style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px;">
                 <div style="max-width: 500px; margin: auto; background-color: white; border-radius: 8px; padding: 20px; border: 1px solid #ddd;">
                   <div style="text-align: center;">
-                    <img src="https://via.placeholder.com/200x60?text=Al+Salama+Hospital" alt="Al Salama Hospital" style="max-width: 200px; margin-bottom: 20px;">
+                    <img src="https://alsalamahospital.com/wp-content/uploads/2024/02/Logo.png" alt="Al Salama Hospital" style="max-width: 200px; margin-bottom: 20px;">
                   </div>
                   <h2 style="color: #003366; text-align: center;">Password Reset Request</h2>
                   <p style="font-size: 16px;">Dear Doctor,</p>
