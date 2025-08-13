@@ -3,3 +3,13 @@ base="dark"
 primaryColor="#1b263b"
 backgroundColor="#1b263b"
 secondaryBackgroundColor="#1b263b"
+
+[server]
+headless = true
+enableCORS = false
+enableXsrfProtection = true
+address = "0.0.0.0"
+port = 8501
+
+[browser]
+gatherUsageStats = false
